@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="TShockAPI">
+      <HintPath>lib/TShockAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="OTAPI">
+      <HintPath>lib/OTAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="TerrariaServer">
+      <HintPath>lib/TerrariaServer.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>
+
