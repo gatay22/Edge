@@ -1,21 +1,30 @@
-name: Build Plugin .NET 9
+name: Build Plugin Auto-Download Libs
 on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - name: Setup .NET 9
         uses: actions/setup-dotnet@v3
         with:
-          # Ubah versi SDK ke 9.0.x
           dotnet-version: 9.0.x
+
+      - name: Download TShock Dependencies
+        run: |
+          mkdir lib
+          curl -L https://github.com -o tshock.zip
+          unzip tshock.zip -d tshock_extracted
+          cp tshock_extracted/TShockAPI.dll lib/
+          cp tshock_extracted/OTAPI.dll lib/
+          cp tshock_extracted/TerrariaServer.dll lib/
+
       - name: Build
         run: dotnet build --configuration Release
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: MyPluginNET9
-          # Sesuaikan path output ke folder net9.0
+          name: MyPluginDLL
           path: bin/Release/net9.0/*.dll
-
