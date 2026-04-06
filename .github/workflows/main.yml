@@ -1,0 +1,21 @@
+name: Build Plugin .NET 9
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET 9
+        uses: actions/setup-dotnet@v3
+        with:
+          # Ubah versi SDK ke 9.0.x
+          dotnet-version: 9.0.x
+      - name: Build
+        run: dotnet build --configuration Release
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: MyPluginNET9
+          # Sesuaikan path output ke folder net9.0
+          path: bin/Release/net9.0/*.dll
+
